@@ -28,6 +28,34 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+nbactions.xml
+nb-configuration.xml
 
 ### VS Code ###
 .vscode/
+
+### Logs ###
+*.log
+logs/
+
+### Sistema operativo ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Archivos de aplicación ###
+*.class
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Archivos de configuración de desarrollo ###
+application-dev.properties
+application-local.properties
