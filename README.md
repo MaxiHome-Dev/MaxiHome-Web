@@ -114,7 +114,7 @@ Desarrollar una aplicación funcional de tipo carrito de compras con roles de us
 
 | Nombre | Rol | Funciones |
 | :--- | :--- | :--- |
-| [Tu Nombre] | Desarrollador Full Stack | Análisis, diseño, desarrollo backend/frontend, control de versiones |
+| Coveñas Ramirez Renzo Jeanpiere | Desarrollador Full Stack | Análisis, diseño, desarrollo backend/frontend, control de versiones |
 
 -----
 
@@ -147,43 +147,53 @@ git checkout main
 git merge --no-ff feature/agregar-entidad-producto
 ```
 
-### Convención de Commits
-
-| Prefijo | Propósito |
-| :--- | :--- |
-| `feat:` | Nueva funcionalidad |
-| `fix:` | Corrección de errores |
-| `docs:` | Documentación |
-| `chore:` | Tareas de mantenimiento |
-| `style:` | Cambios de formato |
-
 -----
 
-## 📸 Evidencias de Implementación
+## 📸 Capturas de Pantalla
 
-  * Capturas de pantalla de comandos Git utilizados.
-  * Imágenes del flujo de trabajo en GitHub.
-  * Ejemplos de commits atómicos.
-  * Resolución de conflictos documentada.
+### Configuración de Spring
+![Configuración de Spring](docs/images/springboot.png)
 
------
+### Estructura Inicial del Proyecto
+![Estructura Inicial del Proyecto](docs/images/estructura.png)
 
-## 🚀 PASOS PARA IMPLEMENTAR ESTE README
+### Configuración inicial del Git y primer commit
+![Pantalla Principal](docs/images/cap1.png)
 
-1.  **Crear rama para documentación:**
-    ```bash
-    git checkout main
-    git pull origin main
-    git checkout -b docs/readme
-    ```
-2.  **Crear archivo `README.md` en NetBeans:**
-      * Clic derecho en proyecto \> `New` \> `Other` \> `Empty File`
-      * Nombre: `README.md`
-      * Pegar todo el contenido de arriba
-      * Guardar (Ctrl + S)
-3.  **Hacer commit y push:**
-    ```bash
-    git add README.md
-    git commit -m "docs: add complete README with project documentation"
-    git push -u origin docs/readme
-    ```
+### Conexión y subida del proyecto a Github
+![Pantalla Principal](docs/images/cap2.png)
+
+### Repositorio creado en GitHub
+![Pantalla Principal](docs/images/github.png)
+
+### Commit: Actualización del archivo .gitignore y añadimiento del archivo LICENSE
+![Pantalla Principal](docs/images/cap3.png)
+
+### Commit: Configuración del Application Properties
+![Pantalla Principal](docs/images/cap4.png)
+
+### Creación de una rama para agregar una funcionalidad
+![Pantalla Principal](docs/images/cap5.png)
+
+### Salida del git status, commit y push exitoso de la rama
+![Pantalla Principal](docs/images/cap6.png)
+
+### Merge(fusion) de la rama con el main
+![Pantalla Principal](docs/images/cap8.png)
+
+### Eliminación de la rama ya usada del local y del repositorio
+![Pantalla Principal](docs/images/cap9.png)
+
+### Creación de una rama para el README, commit y push exitoso
+![Pantalla Principal](docs/images/cap10.png)
+
+### Merge de la rama "docs/readme"
+![Pantalla Principal](docs/images/cap11.png)
+
+### Merge exitoso con el push
+![Pantalla Principal](docs/images/cap12.png)
+
+### Actualización del archivo README terminado
+![Pantalla Principal](docs/images/cap13.png)
+
+---
