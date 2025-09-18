@@ -196,4 +196,16 @@ git merge --no-ff feature/agregar-entidad-producto
 ### Actualización del archivo README terminado
 ![Pantalla Principal](docs/images/cap13.png)
 
+### Falla al hacer merge
+![Pantalla Principal](docs/images/cap14.png)
+
+### Resolución del error y merge exitoso
+```bash
+git checkout main
+git reset --hard origin/main
+git merge docs/readme
+git push -u origin docs/readme
+```
+![Pantalla Principal](docs/images/cap15.png)
+
 ---
