@@ -193,4 +193,7 @@ git merge --no-ff feature/agregar-entidad-producto
 ### Merge exitoso con el push
 ![Pantalla Principal](docs/images/cap12.png)
 
+### Actualización del archivo README terminado
+![Pantalla Principal](docs/images/cap13.png)
+
 ---
