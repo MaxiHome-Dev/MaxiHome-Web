@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="footer">
+            <footer class="text-white mt-5 p-4">
+                <div class="container">
+                    <div class="row">
+                        <!-- Información de contacto -->
+                        <div class="col-md-3">
+                            <h5 th:text="#{footer.contacto}">Contacto</h5>
+                            <p><strong th:text="#{footer.address}">Dirección:</strong> Primera de mayo, Cl. 19 Este #3-14 2 etapa, Madrid, Cundinamarca, Colombia</p>
+                            <p><strong th:text="#{footer.phone}">Teléfono:</strong> +51 949 062 161</p>
+                            <p><strong th:text="#{footer.email}">Correo:</strong> maxiHome@hotmail.com</p>
+                        </div>
+                        <!-- Redes sociales -->
+                        <div class="col-md-3">
+                            <h5 th:text="#{footer.followUs}">Síguenos</h5>
+                            <p><a href="#" class="text-white" th:text="#{footer.facebook}">Facebook</a></p>
+                            <p><a href="#" class="text-white" th:text="#{footer.instagram}">Instagram</a></p>
+                            <p><a href="#" class="text-white" th:text="#{footer.whatsapp}">WhatsApp</a></p>
+                        </div>
+                        <!-- Enlaces útiles -->
+                        <div class="col-md-3">
+                            <h5 th:text="#{footer.usefulLinks}">Enlaces útiles</h5>
+                            <p><a th:href="@{/reclamaciones}" class="text-white" th:text="#{footer.claims}">Libro de Reclamaciones</a></p>
+                            <p><a th:href="@{/sugerencias}" class="text-white" th:text="#{footer.suggestions}">Sugerencias</a></p>
+                            
+                        </div>
+                        <!-- Ubicación -->
+                        <div class="col-md-3">
+                            <h5 th:text="#{footer.location}">Ubicación</h5>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13766.200375393291!2d-74.25624235266241!3d4.734556210798524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f79ab5630f497%3A0x41eb04f23b277aa3!2sMaxihome%20ferreter%C3%ADa!5e0!3m2!1ses-419!2spe!4v1747132884769!5m2!1ses-419!2spe"
+                                    width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <span th:text="#{footer.copyright}">© 2025</span>
+                        <span th:text="#{footer.allRights}">Todos los derechos reservados.</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- Idle logout: sólo si está autenticado -->
+            <script sec:authorize="isAuthenticated()" th:inline="javascript">
+                /*<![CDATA[*/
+                var maxIdle = /*[[${@environment.getProperty('app.session.timeout')}]]*/ 60;
+                var idleTime = 0;
+                function resetIdle() {
+                    idleTime = 0;
+                }
+                ["mousemove", "mousedown", "keydown", "touchstart", "scroll"]
+                        .forEach(evt => document.addEventListener(evt, resetIdle, false));
+                setInterval(function () {
+                    idleTime++;
+                    console.log("idleTime:", idleTime, "/", maxIdle);
+                    if (idleTime >= maxIdle) {
+                        var token = document.querySelector("meta[name='_csrf']").content;
+                        var header = document.querySelector("meta[name='_csrf_header']").content;
+                        fetch('/logout', {
+                            method: 'POST',
+                            headers: {[header]: token, 'Content-Type': 'application/x-www-form-urlencoded'}
+                        }).finally(() => window.location.href = '/iniciar-sesion?timeout');
+                    }
+                }, 1000);
+                /*]]>*/
+            </script>
+
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                const csrfToken = /*[[${_csrf.token}]]*/ '';
+                const csrfHeader = /*[[${_csrf.headerName}]]*/ '';
+
+                // Reconstruye el offcanvas con los datos del carrito
+                function updateCartUI(cart) {
+                    document.getElementById('cartCount').textContent = cart.totalItems;
+                    document.getElementById('cartTotal').textContent = cart.total.toFixed(2);
+
+                    const list = document.getElementById('cartItemsList');
+                    list.innerHTML = '';
+                    cart.items.forEach(i => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                        li.textContent = i.productName;
+                        const span = document.createElement('span');
+                        span.className = 'badge bg-primary rounded-pill';
+                        span.textContent = i.quantity;
+                        li.appendChild(span);
+                        list.appendChild(li);
+                    });
+                }
+
+                // Trae el carrito al cargar y actualiza UI
+                function fetchCart() {
+                    fetch('/api/cart')
+                            .then(res => res.json())
+                            .then(updateCartUI);
+                }
+
+                // Liga los botones "add-to-cart-btn"
+                function bindAddButtons() {
+                    document.querySelectorAll('.add-to-cart-btn')
+                            .forEach(btn => {
+                                btn.addEventListener('click', () => {
+                                    const url = btn.getAttribute('data-url');
+                                    fetch(url, {
+                                        method: 'POST',
+                                        headers: {[csrfHeader]: csrfToken}
+                                    })
+                                            .then(res => res.json())
+                                            .then(updateCartUI);
+                                });
+                            });
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    fetchCart();
+                    bindAddButtons();
+                });
+                /*]]>*/
+            </script>
+
+        </div>
+    </body>
+</html>
