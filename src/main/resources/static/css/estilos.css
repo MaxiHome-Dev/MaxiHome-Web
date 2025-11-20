@@ -1,0 +1,71 @@
+body {
+  padding-top: 70px;
+}
+
+
+.text-naranja {
+    color: #f57c00;
+}
+
+.bg-naranja {
+    background-color: #f57c00 !important;
+}
+
+.navbar a.nav-link {
+    color: white !important;
+    transition: color 0.3s ease;
+}
+
+.navbar a.nav-link:hover {
+    color: #ffd180 !important;
+    text-decoration: underline;
+}
+
+.product-img {
+    width: 100%;
+    height: 350px;          /* altura fija */
+    object-fit: contain;      /* recorta proporcionalmente */
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+/* Botones oscuros para el carrusel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    background-size: 1rem 1rem;
+}
+
+.marca-logo {
+    max-height: 60px;    /* ajusta este valor a tu gusto */
+    width: auto;
+    object-fit: contain;
+}
+
+.marcas-section {
+    background-color: #e1e3e6; /* gris muy claro */
+}
+
+.porque-section {
+    background-color: #FFECB3;   /* un naranja pastel más suave */
+    margin-top: 3rem;            /* separa de la sección anterior */
+}
+.porque-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.porque-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+

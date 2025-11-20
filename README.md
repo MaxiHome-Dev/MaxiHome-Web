@@ -209,3 +209,110 @@ git push -u origin docs/readme
 ![Pantalla Principal](docs/images/cap15.png)
 
 ---
+
+## 📋 **ORGANIZACIÓN PROPUESTA PARA LAS EVIDENCIAS**
+
+### **🏗️ 1. CONFIGURACIÓN INICIAL DE LA ORGANIZACIÓN**
+
+
+### Creación de la Organización MaxiHome-Dev
+![Botón para crear nueva organización en GitHub](docs/images2/cap1.png)
+
+### Configuración de la Organización
+![Formulario de configuración de la organización GitHub](docs/images2/cap2.png)
+
+### Colaborador Agregado a la Organización
+![Invitación enviada a colaborador para unirse a la organización](docs/images2/cap3.png)
+
+### Organización Creada Exitosamente
+![Página principal de la organización MaxiHome-Dev creada](docs/images2/cap7.png)
+
+
+### **🔄 2. TRANSFERENCIA Y CONFIGURACIÓN DEL REPOSITORIO**
+
+
+### Inicio de Transferencia del Repositorio
+![Sección Danger Zone para transferir el repositorio a la organización](docs/images2/cap4.png)
+
+### Confirmación de Transferencia
+![Ventana de confirmación para transferir el repositorio a MaxiHome-Dev](docs/images2/cap5.png)
+
+
+### **🛡️ 3. CONFIGURACIÓN DE BRANCH PROTECTION RULES**
+
+
+### Acceso a Configuración de Branch Protection
+![Ventana para añadir Branch Protection Rules](docs/images2/cap6.png)
+
+### Configuración Detallada de las Reglas
+![Configuración de las reglas con todos los checks habilitados](docs/images2/cap8.png)
+
+### Regla de Protección Creada Exitosamente
+![Branch Protection Rule activa para la rama main](docs/images2/cap9.png)
+
+
+### **🏷️ 4. ORGANIZACIÓN DE LABELS Y MILESTONES**
+
+
+### Creación de Labels
+![Botón para crear nuevos labels en el repositorio](docs/images2/cap10.png)
+
+### Labels Organizados por Categorías
+![Lista completa de los 18 labels organizados en módulos, estado, tipo y colaboración](docs/images2/cap11.png)
+
+### Creación de Milestones
+![Ventana para crear nuevos milestones del proyecto](docs/images2/cap12.png)
+
+### Planificación Completa con Milestones
+![Lista de los 6 milestones: Setup del proyecto y 5 sprints de desarrollo](docs/images2/cap13.png)
+
+
+### **📝 5. GESTIÓN DE ISSUES Y PULL REQUESTS**
+
+
+### Creación de un Issue
+![Ventana de creación de un issue con todos los campos](docs/images2/cap14.png)
+
+### Issues del Milestone 0 - Setup
+![5 issues creados y organizados para el Milestone 0 - Setup del Proyecto](docs/images2/cap15.png)
+
+### Pull Request Esperando Revisión
+![Pull request en estado de revisión, esperando aprobación de colaborador](docs/images2/cap16.png)
+
+### Revisión de Código por Colaborador
+![Colaborador enviando revisión con comentarios y aprobación](docs/images2/cap17.png)
+
+### PR Aprobado y Mergeado
+![Pull request aprobado y fusionado exitosamente al repositorio](docs/images2/cap18.png)
+
+### Flujo de Trabajo en Git Bash - Ejemplo
+![Comandos en Git Bash mostrando creación de rama, commits y push para un issue](docs/images2/cap19.png)
+
+
+### **🍴 6. TRABAJO COLABORATIVO CON FORKS Y UPSTREAM**
+
+
+### Creación de Fork desde Cuenta Secundaria
+![Botón para crear un fork desde la cuenta secundaria en GitHub](docs/images2/cap20.png)
+
+### Fork Creado Exitosamente
+![Fork del repositorio creado en la cuenta secundaria](docs/images2/cap21.png)
+
+### Preparación para Pull Request desde Fork
+![Pantalla lista para crear pull request desde el fork de la cuenta secundaria](docs/images2/cap22.png)
+
+### Pull Request Creado desde el Fork
+![Pull request creado desde el fork hacia el repositorio principal](docs/images2/cap23.png)
+
+### Configuración de Upstream en Git Bash
+![Comandos en Git Bash para configurar upstream al repositorio original](docs/images2/cap24.png)
+
+### Sincronización con Upstream
+![Comandos en Git Bash para sincronizar el fork con los cambios upstream](docs/images2/cap25.png)
+
+### Uso de Fork y Upstream - Comandos Ejecutados
+![Comandos en Git Bash demostrando el uso completo de fork y upstream](docs/images2/cap26.png)
+
+
+---
+

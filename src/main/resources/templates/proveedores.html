@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Proveedores - MaxiHome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/estilos.css">
+        <meta name="_csrf"     th:content="${_csrf.token}" />
+        <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <div class="container my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Gestión de Proveedores</h2>
+                <!-- Botón para abrir modal -->
+                <button type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#proveedorModal"
+                        onclick="prepareNewProveedor()">
+                    + Nuevo Proveedor
+                </button>
+            </div>
+
+            <!-- Tabla de proveedores -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${listaProveedores}">
+                        <td th:text="${p.nombre}">Proveedor A</td>
+                        <td th:text="${p.telefono}">+51 999 999 999</td>
+                        <td th:text="${p.email}">contacto@proveedor.com</td>
+                        <td th:text="${p.direccion}">Av. Ejemplo 123</td>
+                        <td>
+                            <!-- Editar: ahora usamos th:attr para setear onclick sin error -->
+                            <button type="button"
+                                    class="btn btn-sm btn-warning"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#proveedorModal"
+                                    th:attr="onclick=|fillProveedorForm(
+                                    ${p.id},
+                                    '${p.nombre}',
+                                    '${p.telefono}',
+                                    '${p.email}',
+                                    '${p.direccion}'
+                                    )|">
+                                Editar
+                            </button>
+                            <!-- Eliminar -->
+                            <a th:href="@{/proveedores/borrar/{id}(id=${p.id})}"
+                               class="btn btn-sm btn-danger"
+                               onclick="return confirm('¿Eliminar este proveedor?');">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal: Nuevo / Editar Proveedor -->
+        <div class="modal fade" id="proveedorModal" tabindex="-1"
+             aria-labelledby="proveedorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="proveedorModalLabel">Nuevo Proveedor</h5>
+                        <button type="button" class="btn-close"
+                                data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <form th:action="@{/proveedores/guardar}"
+                          th:object="${proveedor}"
+                          method="post">
+                        <div class="modal-body">
+                            <!-- Campo oculto para el ID (solo en edición) -->
+                            <input type="hidden" th:field="*{id}"/>
+
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="nombre"
+                                       th:field="*{nombre}"
+                                       placeholder="Razón social"
+                                       required/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="telefono"
+                                       th:field="*{telefono}"
+                                       placeholder="+51 999 999 999"
+                                       required/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email"
+                                       class="form-control"
+                                       id="email"
+                                       th:field="*{email}"
+                                       placeholder="contacto@proveedor.com"
+                                       required/>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="direccion"
+                                       th:field="*{direccion}"
+                                       placeholder="Dirección física"
+                                       required/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="fragments/footer :: footer"></div>
+
+        <!-- Scripts Bootstrap y utilidades -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+                                   // Prepara el modal para un nuevo proveedor (limpia campos y cambia título)
+                                   function prepareNewProveedor() {
+                                       document.querySelector('#proveedorModalLabel').textContent = 'Nuevo Proveedor';
+                                       document.querySelector('input[name="id"]').value = '';
+                                       document.querySelector('input[name="nombre"]').value = '';
+                                       document.querySelector('input[name="telefono"]').value = '';
+                                       document.querySelector('input[name="email"]').value = '';
+                                       document.querySelector('input[name="direccion"]').value = '';
+                                   }
+                                   // Rellena el modal con datos para editar
+                                   function fillProveedorForm(id, nombre, telefono, email, direccion) {
+                                       document.querySelector('#proveedorModalLabel').textContent = 'Editar Proveedor';
+                                       document.querySelector('input[name="id"]').value = id;
+                                       document.querySelector('input[name="nombre"]').value = nombre;
+                                       document.querySelector('input[name="telefono"]').value = telefono;
+                                       document.querySelector('input[name="email"]').value = email;
+                                       document.querySelector('input[name="direccion"]').value = direccion;
+                                   }
+        </script>
+    </body>
+</html>
