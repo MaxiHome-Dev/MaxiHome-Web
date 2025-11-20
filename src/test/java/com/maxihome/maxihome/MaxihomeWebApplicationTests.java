@@ -1,4 +1,4 @@
-package com.maxihome.maxihome_web;
+package com.maxihome.maxihome;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
