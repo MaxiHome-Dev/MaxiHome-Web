@@ -9,6 +9,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: maxihome
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: maxihome_user
+          MYSQL_PASSWORD: maxihome_pass
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
     - name: Checkout code
@@ -21,11 +37,27 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
+    - name: Wait for MySQL to be ready
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mysql-client
+        while ! mysqladmin ping -h"127.0.0.1" -P3306 -uroot -proot --silent; do
+          sleep 1
+        done
+
     - name: Build with Maven
       run: mvn clean compile
+      env:
+        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/maxihome?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root
 
     - name: Run tests
       run: mvn test
+      env:
+        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/maxihome?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root
 
     - name: Verify packaging
       run: mvn package -DskipTests
